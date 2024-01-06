@@ -28,7 +28,7 @@ function Login() {
   useEffect(() => {
     const email = localStorage.getItem('email') || '';
     setValue(email);
-  })
+  },[])
 
   console.log(value);
 
@@ -68,6 +68,11 @@ function Login() {
   const handleFocus = () => {
     setIsTouched(false);
   }
+
+  const handleNav = () => {
+    navigate('/signup');
+  }
+
   return (
     <div className='flex md:flex-row sm:flex-col'>
       <div>
@@ -124,7 +129,7 @@ function Login() {
                 mail
               </span>
             </div>
-            <p className='text-xs mt-2 underline'>Don't have an account ?</p>
+            <p className='text-xs mt-2 underline hover:cursor-pointer' onClick={handleNav}>Don't have an account ?</p>
           </div>
         </form>
       </div>

@@ -1,4 +1,4 @@
-*{
+* {
   font-family: 'rubik', monospace;
 }
 
@@ -36,6 +36,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -53,6 +54,13 @@
 @media screen and (max-width: 800px) {
   .imag {
     margin-left: 1.5rem;
-    margin-top: -4rem; 
+    margin-top: -4rem;
   }
+}
+
+.textcol {
+  background: linear-gradient(90deg, hsla(26, 100%, 68%, 1) 0%, hsla(183, 54%, 47%, 1) 81%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
