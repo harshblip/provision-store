@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { convertToSHA256 } from '../utils/TxtToSha256'
 import { useNavigate } from 'react-router-dom';
+import image from '../images/loginbg.jpg'
+import store from '../images/prov-store.png'
 
 function Login() {
   const navigate = useNavigate();
@@ -37,20 +39,24 @@ function Login() {
     console.log(data)
   }
   return (
-    <div>
+    <div className='flex md:flex-row sm:flex-col'>
       <div>
-
+        <img src = {image} alt = "background" className='imag mr-2 ml-2'/>
       </div>
-      <div>
-
-        <form onSubmit={handleSubmit}>
-          <label>
-            Email:
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+      <div className='border'>
+        <form onSubmit={handleSubmit} className='absolute shadow-lg space-y-10 mt-12 ml-32 flex flex-col text-start p-8'>
+          <img src = {store} alt = 'store' className='w-[18rem]'/>
+          <label className='flex flex-col mr-12'>
+            <p>Email:</p>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} 
+            className='border border-red-500'
+            />
           </label>
-          <label>
-            Password:
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+          <label className='flex flex-col mr-12'>
+            <p>Password:</p>
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} 
+            className='border border-red-500'
+            />
           </label>
           <input type="submit" value="Sign In" />
         </form>
