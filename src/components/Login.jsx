@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { convertToSHA256 } from '../utils/TxtToSha256'
 import { useNavigate } from 'react-router-dom';
 import validation from '../validationRules.json'
+import { auth, provider } from '../GoogleAuth/config'
+import { signInWithPopup } from 'firebase/auth'
 import image from '../images/loginbg.jpg'
 import store from '../images/prov-store.png'
 import google from '../images/google.png'
@@ -12,7 +14,23 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isTouched, setIsTouched] = useState(false);
+  const [isTouched, setIsTouched] = useState(true);
+  const [value, setValue] = useState('');
+
+  const handleClick = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      const email = data.user?.email || '';
+      setValue(email);
+      localStorage.setItem("email", email);
+    })
+  }
+
+  useEffect(() => {
+    const email = localStorage.getItem('email') || '';
+    setValue(email);
+  })
+
+  console.log(value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +60,7 @@ function Login() {
     }
     console.log(data)
   }
-  
+
   const handleBlur = () => {
     setIsTouched(true);
   }
@@ -53,10 +71,10 @@ function Login() {
   return (
     <div className='flex md:flex-row sm:flex-col'>
       <div>
-        <img src={image} alt="background" className='imag mr-2 ml-2' />
+        <img src={image} alt="background" className='imag mr-2 ml-2 visible' />
       </div>
       <div className=''>
-        <form onSubmit={handleSubmit} className='absolute shadow-lg space-y-8 mt-8 ml-32 flex flex-col text-start p-8 rounded-xl'>
+        <form onSubmit={handleSubmit} className='absolute shadow-lg space-y-8 -mt-28 md:mt-8 ml-12 md:ml-32 flex flex-col text-start p-8 rounded-xl'>
           <img src={store} alt='store' className='w-[16rem]' />
           <label className='flex flex-col mr-6 ml-1'>
             <p>Email</p>
@@ -82,14 +100,14 @@ function Login() {
             </label>
             <div>
               {!isTouched && (
-                 validation.map((rule, index) => (
-                    <div key={index} className='flex text-sm ml-1 mt-1 transition-all'>
-                      {new RegExp(rule.regex).test(password) ? <img src={right} alt="Right" width={20} /> : <img src={wrong} alt="Wrong" width={20} />}
-                      <p style={{ color: new RegExp(rule.regex).test(password) ? 'green' : 'red' }} className='ml-1 mt-[0.1rem]'>
-                        {rule.message}
-                      </p>
-                    </div>
-                  ))
+                validation.map((rule, index) => (
+                  <div key={index} className='flex text-sm ml-1 mt-1 transition-all'>
+                    {new RegExp(rule.regex).test(password) ? <img src={right} alt="Right" width={20} /> : <img src={wrong} alt="Wrong" width={20} />}
+                    <p style={{ color: new RegExp(rule.regex).test(password) ? 'green' : 'red' }} className='ml-1 mt-[0.1rem]'>
+                      {rule.message}
+                    </p>
+                  </div>
+                ))
               )}
             </div>
           </div>
@@ -100,7 +118,7 @@ function Login() {
               className='bg-orange-400 text-white hover:bg-blue-50 hover:text-orange-400 hover:cursor-pointer transition-all w-[16rem] h-[2rem] rounded-lg' />
             <div className='flex space-x-4 mt-4'>
               <span>
-                <img src={google} alt='google signin' width={25} />
+                <img src={google} alt='google signin' width={25} onClick={handleClick} className='hover:cursor-pointer'/>
               </span>
               <span className='material-symbols-outlined'>
                 mail
