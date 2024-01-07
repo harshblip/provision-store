@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import './Homepage.css';
 import { AuthContext } from '../../Context/AuthContext';
 import { ProductContext } from '../../Context/ProductContext'
+import { useNavigate } from 'react-router-dom';
 import Card from '../Card/Card';
 import Navbar from '../Navbar';
 
@@ -48,23 +49,41 @@ function HomePage() {
     setProducts(filteredProducts);
   }
 
+  const navigate = useNavigate();
+
+  const gocart = () => {
+    navigate('/mycart');
+  }
+
+  const goAbout = () => {
+    navigate('/about');
+  }
 
   return (
+
     <>
       <Navbar />
       <div className='flex flex-col justify-center items-center absolute md:relative mt-32 md:mt-12'>
-        <input
-          type='search'
-          placeholder='Search something'
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className='p-4 searchbar ml-28 md:ml-4 mr-4 '
-          onKeyUp={(e) => {
-            if (e.key === 'Enter') {
-              handleSearch();
-            }
-          }}
-        />
+        <div className='flex flex-col'>
+          <input
+            type='search'
+            placeholder='Search something'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className='p-4 searchbar ml-28 md:ml-4 mr-4 '
+            onKeyUp={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch();
+              }
+            }}
+          />
+          <div className='visible md:invisible flex '>
+            <span class="material-symbols-outlined mr-8" onClick={gocart}>
+              shopping_cart
+            </span>
+            <button className='mr-24 underline' onClick={goAbout}>About</button>
+          </div>
+        </div>
         <Card />
       </div>
     </>

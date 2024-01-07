@@ -9,9 +9,13 @@ function Navbar() {
         navigate('/mycart');
     }
 
+    const goAbout = () => {
+        navigate('/about');
+    }
+
     return (
         <div>
-            <div className='absolute md:relative ml-24 md:ml-4 flex md:shadow-md justify-between'>
+            <div className='absolute md:relative mt-2 ml-24 md:ml-4 flex md:shadow-md justify-between'>
                 <div className='flex items-center'>
                     <img src={logo} alt='logo' width={120} className='ml-12' />
                     <p className='text-lg'>Provision Store</p>
@@ -20,7 +24,7 @@ function Navbar() {
                     <span class="material-symbols-outlined mr-8" onClick={gocart}>
                         shopping_cart
                     </span>
-                    <button className='mr-24 underline'>About</button>
+                    <button className='mr-24 underline' onClick={goAbout}>About</button>
                 </div>
             </div>
         </div>
