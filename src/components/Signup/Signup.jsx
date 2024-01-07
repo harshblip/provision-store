@@ -52,10 +52,10 @@ function Signup() {
     return (
         <div className='flex md:flex-row sm:flex-col'>
             <div>
-                <p className='mt-[14rem] ml-40 text-8xl font-bold textcol'>Welcome.</p>
+                <p className='absolute md:relative mt-[6rem] md:mt-[14rem] ml-16 md:ml-40 text-8xl font-bold textcol'>Welcome.</p>
             </div>
             <div className=''>
-                <form onSubmit={handleSubmit} className='absolute shadow-lg space-y-4 -mt-28 md:mt-8 ml-12 md:ml-32 flex flex-col text-start p-8 rounded-xl'>
+                <form onSubmit={handleSubmit} className='absolute shadow-lg space-y-4 mt-56 md:mt-8 ml-12 md:ml-32 flex flex-col text-start p-8 rounded-xl'>
                     <img src={store} alt='store' className='w-[16rem]' />
                     <label className='flex flex-col mr-6 ml-1'>
                         <p>Name</p>
