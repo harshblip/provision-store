@@ -11,12 +11,12 @@ function Navbar() {
 
     return (
         <div>
-            <div className='flex shadow-md justify-between'>
+            <div className='absolute md:relative ml-24 md:ml-4 flex md:shadow-md justify-between'>
                 <div className='flex items-center'>
                     <img src={logo} alt='logo' width={120} className='ml-12' />
                     <p className='text-lg'>Provision Store</p>
                 </div>
-                <div className='flex items-center'>
+                <div className='invisible md:visible flex items-center'>
                     <span class="material-symbols-outlined mr-8" onClick={gocart}>
                         shopping_cart
                     </span>

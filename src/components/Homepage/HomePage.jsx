@@ -52,22 +52,20 @@ function HomePage() {
   return (
     <>
       <Navbar />
-      <div className='flex flex-col justify-center items-center mt-12'>
+      <div className='flex flex-col justify-center items-center absolute md:relative mt-32 md:mt-12'>
         <input
           type='search'
           placeholder='Search something'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className='p-4 searchbar ml-4 mr-4 '
+          className='p-4 searchbar ml-28 md:ml-4 mr-4 '
           onKeyUp={(e) => {
             if (e.key === 'Enter') {
               handleSearch();
             }
           }}
         />
-        <div className='flex'>
-          <Card />
-        </div>
+        <Card />
       </div>
     </>
   )

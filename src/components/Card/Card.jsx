@@ -38,7 +38,7 @@ function Card() {
             const isInCart = cart.some(cartItem => cartItem.productCategory.orderIndex === product.productCategory.orderIndex); // Check if the product is in the cart
             return (
               <div>
-                <div key={i} className='flex rounded-md shadow-md bg-white/80 mt-4 p-5'>
+                <div key={i} className='flex rounded-md shadow-md bg-white/80 mt-4 p-5 w-[30rem]'>
                   <div className='bg-orange-200 p-2 rounded-md'>
                     <img src={product.productCategory.productCategoryImage} alt="Product Category" width={50} className='p-1' />
                   </div>
