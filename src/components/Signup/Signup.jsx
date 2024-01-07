@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { convertToSHA256 } from '../../utils/TxtToSha256'
 import { useNavigate } from 'react-router-dom';
 import validation from '../../validationRules.json'
-import store from '../images/prov-store.png'
-import google from '../images/google.png'
-import right from '../images/check.png';
-import wrong from '../images/wrong.png';
+import store from '../../images/prov-store.png'
+import google from '../../images/google.png'
+import right from '../../images/check.png';
+import wrong from '../../images/wrong.png';
 import './Signup.css';
 
 function Signup() {
@@ -36,12 +36,10 @@ function Signup() {
 
         const data = await response.json();
         if (data.response && data.response.access_token) {
-            console.log(data.response.access_token);
             localStorage.setItem('access_token', data.response.access_token);
         } else {
             console.log(data.error);
         }
-        console.log(data)
     }
 
     const handleBlur = () => {

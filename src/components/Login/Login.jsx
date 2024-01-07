@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { convertToSHA256 } from '../../utils/TxtToSha256'
 import { useNavigate } from 'react-router-dom';
 import validation from '../../validationRules.json'
 import { auth, provider } from '../../GoogleAuth/config'
 import { signInWithPopup } from 'firebase/auth'
-import image from '../images/loginbg.jpg'
-import store from '../images/prov-store.png'
-import google from '../images/google.png'
-import right from '../images/check.png';
-import wrong from '../images/wrong.png';
+import image from '../../images/loginbg.jpg'
+import store from '../../images/prov-store.png'
+import google from '../../images/google.png'
+import right from '../../images/check.png';
+import wrong from '../../images/wrong.png';
+import { AuthContext } from '../../Context/AuthContext';
 import './Login.css'
 
 function Login() {
@@ -17,6 +18,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isTouched, setIsTouched] = useState(true);
   const [value, setValue] = useState('');
+
+  const { setAuthToken } = useContext(AuthContext);
 
   const handleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
@@ -31,7 +34,7 @@ function Login() {
     setValue(email);
   },[])
 
-  console.log(value);
+  // console.log(value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,12 +57,13 @@ function Login() {
 
     const data = await response.json();
     if (data.response && data.response.access_token) {
-      console.log(data.response.access_token);
+      // console.log(data.response.access_token);
+      setAuthToken(data.response.access_token);
+      // console.log(data)
       localStorage.setItem('access_token', data.response.access_token);
     } else {
       console.log(data.error);
     }
-    console.log(data)
   }
 
   const handleBlur = () => {
@@ -89,7 +93,7 @@ function Login() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder=''
-              className='border border-red-500 rounded-md h-8 p-2 mt-1 text-sm bg-transparent'
+              className='border-2 border-slate-300 rounded-md h-8 p-2 mt-1 text-sm bg-transparent'
             />
           </label>
           <div className='flex flex-col'>
@@ -101,7 +105,7 @@ function Login() {
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 onChange={e => setPassword(e.target.value)}
-                className='border border-red-500 rounded-md h-8 p-2 mt-2 text-sm bg-transparent'
+                className='border-2 border-slate-300 rounded-md h-8 p-2 mt-2 text-sm bg-transparent'
               />
             </label>
             <div>

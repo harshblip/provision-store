@@ -1,0 +1,16 @@
+*{
+    transition: 0.1s all ease-in;
+}
+.searchbar {
+    min-width: 10rem;
+    width: 40rem;
+    border-radius: 1rem;
+}
+
+input {
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid rgb(131, 240, 104);
+}
