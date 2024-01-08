@@ -81,7 +81,7 @@ function Login() {
   return (
     <div className='flex md:flex-row sm:flex-col'>
       <div>
-        <img src={image} alt="background" className='imag mr-2 ml-2 visible' />
+        <img src={image} alt="background" className='imag mr-2 ml-2 visible' required/>
       </div>
       <div className=''>
         <form onSubmit={handleSubmit} className='absolute shadow-lg space-y-8 -mt-28 md:mt-8 ml-12 md:ml-32 flex flex-col text-start p-8 rounded-xl'>
@@ -94,6 +94,7 @@ function Login() {
               onChange={e => setEmail(e.target.value)}
               placeholder=''
               className='border-2 border-slate-300 rounded-md h-8 p-2 mt-1 text-sm bg-transparent'
+              required
             />
           </label>
           <div className='flex flex-col'>
@@ -106,6 +107,7 @@ function Login() {
                 onFocus={handleFocus}
                 onChange={e => setPassword(e.target.value)}
                 className='border-2 border-slate-300 rounded-md h-8 p-2 mt-2 text-sm bg-transparent'
+                required
               />
             </label>
             <div>
