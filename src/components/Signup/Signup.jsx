@@ -65,6 +65,7 @@ function Signup() {
                             onChange={e => setName(e.target.value)}
                             placeholder=''
                             className='border border-red-500 rounded-md h-8 p-2 mt-1 text-sm bg-transparent'
+                            required
                         />
                     </label>
                     <label className='flex flex-col mr-6 ml-1'>
@@ -75,6 +76,7 @@ function Signup() {
                             onChange={e => setEmail(e.target.value)}
                             placeholder=''
                             className='border border-red-500 rounded-md h-8 p-2 mt-1 text-sm bg-transparent'
+                            required
                         />
                     </label>
                     <div className='flex flex-col'>
@@ -87,6 +89,7 @@ function Signup() {
                                 onFocus={handleFocus}
                                 onChange={e => setPassword(e.target.value)}
                                 className='border border-red-500 rounded-md h-8 p-2 mt-2 text-sm bg-transparent'
+                                required
                             />
                         </label>
                         <div>
